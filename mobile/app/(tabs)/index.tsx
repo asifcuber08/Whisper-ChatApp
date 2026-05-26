@@ -7,11 +7,11 @@ import {
   FlatList,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useChats } from "../hooks/useChat";
 import { Ionicons } from "@expo/vector-icons";
 import ChatItem from "@/components/ChatItem";
 import EmptyUI from "@/components/EmptyUI";
 import { Chat } from "@/types";
+import { useChats } from "@/hooks/useChat";
 
 const ChatsTab = () => {
   const router = useRouter();
@@ -77,6 +77,7 @@ const ChatsTab = () => {
             <ChatItem chat={item} onPress={() => handleChatPress(item)} />
           )}
           showsVerticalScrollIndicator={false}
+          contentInsetAdjustmentBehavior="automatic"
           contentContainerStyle={{
             paddingHorizontal: 20,
             paddingTop: 16,
@@ -106,7 +107,7 @@ function Header() {
   const router = useRouter();
 
   return (
-    <View className="px-4 pt-1 pb-4">
+    <View className="px-4 pb-4">
       <View className="flex-row items-center justify-between">
         <Text className="text-2xl font-bold text-foreground">Chats</Text>
         <Pressable
