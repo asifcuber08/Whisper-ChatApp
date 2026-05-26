@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useAuth, useUser } from "@clerk/expo"
-import { useAuthCallback } from "@/app/hooks/useAuth";
 import * as Sentry from '@sentry/react-native';
+import { useAuthCallback } from "@/hooks/useAuth";
 
 const AuthSync = () => {
      const { isSignedIn } = useAuth();
