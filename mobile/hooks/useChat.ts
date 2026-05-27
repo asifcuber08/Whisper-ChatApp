@@ -16,20 +16,20 @@ export const useChats = () => {
 };
 
 
-// export const useGetOrCreateChat = () => {
-//   const { apiWithAuth } = useApi();
-//   const queryClient = useQueryClient();
+export const useGetOrCreateChat = () => {
+  const { apiWithAuth } = useApi();
+  const queryClient = useQueryClient();
 
-//   return useMutation({
-//     mutationFn: async (participantId: string) => {
-//       const { data } = await apiWithAuth<Chat>({
-//         method: "POST",
-//         url: `/chats/with/${participantId}`,
-//       });
-//       return data;
-//     },
-//     onSuccess: () => {
-//       queryClient.invalidateQueries({ queryKey: ["chats"] });
-//     },
-//   });
-// };
+  return useMutation({
+    mutationFn: async (participantId: string) => {
+      const { data } = await apiWithAuth<Chat>({
+        method: "POST",
+        url: `/chats/with/${participantId}`,
+      });
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["chats"] });
+    },
+  });
+};
