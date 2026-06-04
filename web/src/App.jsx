@@ -1,24 +1,27 @@
-import "./App.css";
 import {
   SignedIn,
   SignedOut,
   SignInButton,
+  useAuth,
   UserButton,
 } from "@clerk/clerk-react";
+import ChatPage from "./pages/ChatPage";
+import HomePage from "./pages/HomePage";
+import PageLoader from "./components/PageLoader";
+import { Navigate, Route, Routes } from "react-router";
+import useUserSync from "./hooks/useUserSync";
 
 function App() {
+  const { isLoaded, isSignedIn } = useAuth();
+  useUserSync();
+
+  if (!isLoaded) return <PageLoader />;
+
   return (
-    <>
-      <h1>Hello world</h1>
-
-      <SignedOut>
-        <SignInButton mode="modal" />
-      </SignedOut>
-
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
-    </>
+    <Routes>
+      <Route path="/" element={!isSignedIn ? <HomePage /> : <Navigate to={"/chat"} />} />
+      <Route path="/chat" element={isSignedIn ? <ChatPage /> : <Navigate to={"/"} />} />
+    </Routes>
   );
 }
 
