@@ -50,7 +50,9 @@
           "project": "whisper-app",
           "organization": "asif-y9"
         }
-      ]
+      ],
+      "expo-font",
+      "@sentry/react-native"
     ],
     "experiments": {
       "typedRoutes": true,
